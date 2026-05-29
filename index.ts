@@ -7,13 +7,15 @@ console.log("args: ", args);
 
 app.get("/", instance => {
   let port = instance.server!.port;
-
+  let client = instance.request.headers.get("host");
+  console.log("requested port:", port);
+  console.log("Client ID:", client);
   return "You requested: " + port;
 });
 
 enum Result {
-  Ok,
-  Err
+  Ok = "Success",
+  Err = "Failure"
 }
 
 function startServer(args: String[]): Result {
